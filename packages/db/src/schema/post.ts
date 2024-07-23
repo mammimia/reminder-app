@@ -1,7 +1,5 @@
 import { sql } from "drizzle-orm";
 import { pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
 
 export const Post = pgTable("post", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -14,11 +12,11 @@ export const Post = pgTable("post", {
   }).$onUpdateFn(() => sql`now()`),
 });
 
-export const CreatePostSchema = createInsertSchema(Post, {
+/* export const CreatePostSchema = createInsertSchema(Post, {
   title: z.string().max(256),
   content: z.string().max(256),
 }).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-});
+}); */

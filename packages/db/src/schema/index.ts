@@ -1,15 +1,11 @@
 export {
-  User,
   Account,
   AccountRelations,
   Session,
   SessionRelations,
+  User,
 } from "./auth";
+export { Category, CategoryRelations } from "./category";
+export { Folder, FolderRelations } from "./folder";
 export { Post } from "./post";
-export {
-  Reminder,
-  Folder,
-  FolderRelations,
-  Category,
-  CategoryRelations,
-} from "./reminder";
+export { Reminder } from "./reminder";
