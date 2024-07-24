@@ -37,8 +37,8 @@ export const Reminder = pgTable("reminder", {
 });
 
 export const CreateReminderSchema = createInsertSchema(Reminder, {
-  title: z.string().max(256),
-  content: z.string().max(256),
+  title: z.string().min(3).max(256),
+  content: z.string().min(3).max(256),
   folderId: z.string(),
   expiryDate: z.string().nullable(),
 }).omit({

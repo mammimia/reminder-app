@@ -5,7 +5,7 @@ export {
   SessionRelations,
   User,
 } from "./auth";
-export { Category, CategoryRelations } from "./category";
-export { Folder, FolderRelations } from "./folder";
+export { Category, CategoryRelations, CreateCategorySchema } from "./category";
+export { Folder, FolderRelations, CreateFolderSchema } from "./folder";
 export { Post } from "./post";
-export { Reminder } from "./reminder";
+export { Reminder, CreateReminderSchema } from "./reminder";
