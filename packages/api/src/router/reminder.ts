@@ -1,16 +1,19 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 
-import { desc } from "@acme/db";
-import { Reminder } from "@acme/db/schema";
+import { CreateReminderSchema, desc, Reminder } from "@acme/db";
 
 import { publicProcedure } from "../trpc";
 
 export const reminderRouter = {
+  //Add Folder Details
   all: publicProcedure.query(({ ctx }) => {
-    // return ctx.db.select().from(schema.post).orderBy(desc(schema.post.id));
     return ctx.db.query.Reminder.findMany({
-      orderBy: desc(Reminder.id),
-      limit: 10,
+      orderBy: desc(Reminder.createdAt),
     });
   }),
+  create: publicProcedure
+    .input(CreateReminderSchema)
+    .mutation(({ ctx, input }) => {
+      return ctx.db.insert(Reminder).values(input);
+    }),
 } satisfies TRPCRouterRecord;

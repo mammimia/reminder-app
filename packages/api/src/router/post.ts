@@ -1,8 +1,7 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import { desc, eq } from "@acme/db";
-import { CreatePostSchema, Post } from "@acme/db/schema";
+import { desc, eq, Post } from "@acme/db";
 
 import { protectedProcedure, publicProcedure } from "../trpc";
 
@@ -28,11 +27,11 @@ export const postRouter = {
       });
     }),
 
-  create: protectedProcedure
+  /*   create: protectedProcedure
     .input(CreatePostSchema)
     .mutation(({ ctx, input }) => {
       return ctx.db.insert(Post).values(input);
-    }),
+    }), */
 
   delete: protectedProcedure.input(z.string()).mutation(({ ctx, input }) => {
     return ctx.db.delete(Post).where(eq(Post.id, input));
