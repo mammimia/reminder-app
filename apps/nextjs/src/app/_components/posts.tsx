@@ -1,7 +1,7 @@
 "use client";
 
 import type { RouterOutputs } from "@acme/api";
-import { CreatePostSchema } from "@acme/db/schema";
+import { CreatePostSchema } from "@acme/db";
 import { cn } from "@acme/ui";
 import { Button } from "@acme/ui/button";
 import {
