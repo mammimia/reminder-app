@@ -2,17 +2,18 @@ import { Suspense } from "react";
 
 import { api, HydrateClient } from "~/trpc/server";
 import { AuthShowcase } from "./_components/auth-showcase";
-import {
-  CreatePostForm,
-  PostCardSkeleton,
-  PostList,
-} from "./_components/posts";
+import CategoryList from "./_components/categories";
+import FolderList from "./_components/folders";
+import { Loading } from "./_components/loading";
+import { ReminderList } from "./_components/reminders";
 
 export const runtime = "edge";
 
 export default function HomePage() {
   // You can await this here if you don't want to show Suspense fallback below
-  void api.post.all.prefetch();
+  void api.category.all.prefetch();
+  void api.folder.all.prefetch();
+  void api.reminder.all.prefetch();
 
   return (
     <HydrateClient>
@@ -23,20 +24,13 @@ export default function HomePage() {
           </h1>
           <AuthShowcase />
 
-          <CreatePostForm />
-          <div className="w-full max-w-2xl overflow-y-scroll">
-            <Suspense
-              fallback={
-                <div className="flex w-full flex-col gap-4">
-                  <PostCardSkeleton />
-                  <PostCardSkeleton />
-                  <PostCardSkeleton />
-                </div>
-              }
-            >
-              <PostList />
-            </Suspense>
-          </div>
+          <Suspense fallback={<Loading />}>
+            <div className="w-full max-w-2xl overflow-y-scroll">
+              <CategoryList />
+              <FolderList />
+              <ReminderList />
+            </div>
+          </Suspense>
         </div>
       </main>
     </HydrateClient>
