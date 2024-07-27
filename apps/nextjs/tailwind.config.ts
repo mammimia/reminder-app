@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
 import baseConfig from "@acme/tailwind-config/web";
 
@@ -11,8 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        poppins: ["var(--font-poppins)"],
       },
       colors: {
         background: "var(--background)",
@@ -23,6 +21,7 @@ export default {
         "popover-foreground": "var(--popover-foreground)",
         primary: "var(--primary)",
         "primary-foreground": "var(--primary-foreground)",
+        "primary-background": "var(--primary-background)",
         secondary: "var(--secondary)",
         "secondary-foreground": "var(--secondary-foreground)",
         muted: "var(--muted)",

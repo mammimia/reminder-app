@@ -1,6 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@acme/ui";
 import { ThemeProvider, ThemeToggle } from "@acme/ui/theme";
@@ -10,7 +8,17 @@ import { TRPCReactProvider } from "~/trpc/react";
 
 import "~/app/globals.css";
 
+import { Poppins } from "next/font/google";
+
 import { env } from "~/env";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  style: "normal",
+  variable: "--font-poppins",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -45,9 +53,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans text-foreground antialiased",
-          GeistSans.variable,
-          GeistMono.variable,
+          "font-poppins min-h-screen bg-background text-foreground antialiased",
+          poppins.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
