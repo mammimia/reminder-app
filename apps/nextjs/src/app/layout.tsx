@@ -11,6 +11,8 @@ import "~/app/globals.css";
 import { Poppins } from "next/font/google";
 
 import { env } from "~/env";
+import Header from "./_components/layout/header";
+import Sidebar from "./_components/layout/sidebar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -53,12 +55,20 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "font-poppins min-h-screen bg-background text-foreground antialiased",
+          "font-poppins min-h-screen bg-background text-sm text-foreground antialiased",
           poppins.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <TRPCReactProvider>{props.children}</TRPCReactProvider>
+          <TRPCReactProvider>
+            <Header />
+            <main className="flex">
+              <Sidebar />
+              <div className="container h-screen bg-primary-foreground py-16">
+                {props.children}
+              </div>
+            </main>
+          </TRPCReactProvider>
           <div className="absolute bottom-4 right-4">
             <ThemeToggle />
           </div>

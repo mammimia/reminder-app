@@ -1,24 +1,23 @@
-import Link from "next/link";
+import { BellDot, Settings, User } from "@acme/ui";
 
 export default function Header() {
   return (
-    <header className="flex h-10 items-center gap-5 bg-primary px-5">
-      <HeaderItem href="/">Home</HeaderItem>
-      <HeaderItem href="/category">Category</HeaderItem>
-      <HeaderItem href="/folder">Folder</HeaderItem>
+    <header className="bg-primary-background flex h-12 items-center justify-end gap-4 px-5">
+      <HeaderIcon icon={<User className="h-6 w-6" />} />
+      <HeaderIcon icon={<BellDot className="h-6 w-6" />} />
+      <HeaderIcon icon={<Settings className="h-6 w-6" />} />
     </header>
   );
 }
 
-interface HeaderItemProps {
-  children: React.ReactNode;
-  href: string;
+interface HeaderIconProps {
+  icon: React.ReactNode;
 }
 
-function HeaderItem({ children, href }: HeaderItemProps) {
+function HeaderIcon({ icon }: HeaderIconProps) {
   return (
-    <Link href={href} className="hover:text-background">
-      {children}
-    </Link>
+    <div className="font-semibold text-primary hover:cursor-pointer hover:text-secondary">
+      {icon}
+    </div>
   );
 }
