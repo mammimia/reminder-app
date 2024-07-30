@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import {
   boolean,
+  pgEnum,
   pgTable,
   text,
   timestamp,
@@ -11,6 +12,14 @@ import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { Folder } from "./folder";
+
+export const reminderStatus = pgEnum("reminder_status", [
+  "todo",
+  "inProgress",
+  "pending",
+  "done",
+  "cancelled",
+]);
 
 export const Reminder = pgTable("reminder", {
   id: uuid("id").notNull().primaryKey().defaultRandom(),
@@ -31,6 +40,7 @@ export const Reminder = pgTable("reminder", {
     mode: "date",
     withTimezone: true,
   }),
+  status: reminderStatus("status").default("todo").notNull(),
   folderId: uuid("folderId")
     .notNull()
     .references(() => Folder.id, { onDelete: "cascade" }),
@@ -41,9 +51,13 @@ export const CreateReminderSchema = createInsertSchema(Reminder, {
   content: z.string().min(3).max(256),
   folderId: z.string(),
   expiryDate: z.string().nullable(),
+  status: z.enum(reminderStatus.enumValues),
 }).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
   isActive: true,
 });
+
+export type Reminder = typeof Reminder.$inferSelect;
+export type CreateReminder = typeof CreateReminderSchema;
