@@ -41,9 +41,9 @@ export const Reminder = pgTable("reminder", {
     withTimezone: true,
   }),
   status: reminderStatus("status").default("todo").notNull(),
-  folderId: uuid("folderId")
-    .notNull()
-    .references(() => Folder.id, { onDelete: "cascade" }),
+  folderId: uuid("folderId").references(() => Folder.id, {
+    onDelete: "cascade",
+  }),
 });
 
 export const CreateReminderSchema = createInsertSchema(Reminder, {

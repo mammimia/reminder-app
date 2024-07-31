@@ -27,9 +27,9 @@ export const Folder = pgTable("folder", {
   }).$onUpdateFn(() => sql`now()`),
   isActive: boolean("isActive").default(true),
   color: varchar("color", { length: 7 }).default("#000000"),
-  categoryId: uuid("categoryId")
-    .notNull()
-    .references(() => Category.id, { onDelete: "cascade" }),
+  categoryId: uuid("categoryId").references(() => Category.id, {
+    onDelete: "cascade",
+  }),
 });
 
 export const FolderRelations = relations(Folder, ({ many }) => ({
