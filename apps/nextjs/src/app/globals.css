@@ -5,17 +5,17 @@
 
 @layer base {
   :root {
-    --background: #ffffff;
+    --background: #ffd4a3;
     --foreground: #1a1a1a;
     --card: #ffffff;
     --card-foreground: #1a1a1a;
     --popover: #ffffff;
     --popover-foreground: #1a1a1a;
-    --primary: #3d405b;
-    --primary-foreground: #331515;
-    --primary-background: #f4f4f4;
-    --secondary: #f4f4f4;
-    --secondary-foreground: #1a1a1a;
+    --primary: #544e68;
+    --primary-foreground: #203c56;
+    --primary-background: #0d2b45;
+    --secondary: #d08159;
+    --secondary-foreground: #ffaa5e;
     --muted: #f4f4f4;
     --muted-foreground: #767676;
     --accent: #f4f4f4;
@@ -29,17 +29,17 @@
   }
 
   .dark {
-    --background: #3d405b;
+    --background: #ffd4a3;
     --foreground: #fcfcfc;
     --card: #1a1a1a;
     --card-foreground: #fcfcfc;
     --popover: #1a1a1a;
     --popover-foreground: #fcfcfc;
-    --primary: #e07a5f;
-    --primary-foreground: #331515;
-    --primary-background: #f4f4f4;
-    --secondary: #404040;
-    --secondary-foreground: #fcfcfc;
+    --primary: #544e68;
+    --primary-foreground: #203c56;
+    --primary-background: #0d2b45;
+    --secondary: #d08159;
+    --secondary-foreground: #ffaa5e;
     --muted: #81b29a;
     --muted-foreground: #a3a3a3;
     --accent: #404040;
