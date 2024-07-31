@@ -1,19 +1,48 @@
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
+
 import { cn, History, ListTodo, Receipt } from "@acme/ui";
 import { Label } from "@acme/ui/label";
 
+const sidebarItems = [
+  {
+    icon: <ListTodo className="h-6 w-6" />,
+    label: "Reminders",
+    path: "/reminders",
+  },
+  {
+    icon: <History className="h-6 w-6" />,
+    label: "Daily Routines",
+    path: "/daily-routines",
+  },
+  {
+    icon: <Receipt className="h-6 w-6" />,
+    label: "Expenses",
+    path: "/expenses",
+  },
+];
+
 export default function Sidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const navigate = (path: string) => {
+    router.push(path);
+  };
+  const isPathActive = (path: string) => pathname === path;
+
   return (
-    <aside className="bg-primary-background flex h-screen w-64 flex-col gap-3 p-4 text-primary">
-      <SidebarItem
-        isActive
-        icon={<ListTodo className="h-6 w-6" />}
-        label="Reminders"
-      />
-      <SidebarItem
-        icon={<History className="h-6 w-6" />}
-        label="Daily Routines"
-      />
-      <SidebarItem icon={<Receipt className="h-6 w-6" />} label="Expenses" />
+    <aside className="bg-primary-background flex h-screen w-64 flex-col gap-3 p-4 text-secondary-foreground">
+      {sidebarItems.map((item) => (
+        <SidebarItem
+          key={item.path}
+          icon={item.icon}
+          label={item.label}
+          isActive={isPathActive(item.path)}
+          navigate={() => navigate(item.path)}
+        />
+      ))}
     </aside>
   );
 }
@@ -21,16 +50,18 @@ export default function Sidebar() {
 interface SidebarItemProps {
   icon: React.ReactNode;
   label: string;
-  isActive?: boolean;
+  isActive: boolean;
+  navigate: () => void;
 }
 
-function SidebarItem({ icon, label, isActive }: SidebarItemProps) {
+function SidebarItem({ icon, label, isActive, navigate }: SidebarItemProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 rounded-full p-4 hover:cursor-pointer hover:bg-secondary hover:text-primary",
-        isActive && "bg-secondary text-primary",
+        "flex items-center gap-4 rounded-full p-4 hover:cursor-pointer hover:bg-secondary-foreground hover:text-primary-foreground",
+        isActive && "bg-secondary-foreground text-primary-foreground",
       )}
+      onClick={navigate}
     >
       {icon}
       <Label className="hover:cursor-pointer">{label}</Label>

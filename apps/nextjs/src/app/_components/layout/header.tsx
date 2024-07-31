@@ -16,7 +16,7 @@ interface HeaderIconProps {
 
 function HeaderIcon({ icon }: HeaderIconProps) {
   return (
-    <div className="font-semibold text-primary hover:cursor-pointer hover:text-secondary">
+    <div className="font-semibold text-secondary hover:cursor-pointer hover:text-secondary-foreground">
       {icon}
     </div>
   );
