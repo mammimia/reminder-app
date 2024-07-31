@@ -55,7 +55,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "font-poppins min-h-screen bg-background text-sm text-foreground antialiased",
+          "font-poppins min-h-screen bg-background text-sm text-primary antialiased",
           poppins.variable,
         )}
       >
@@ -64,7 +64,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             <Header />
             <main className="flex">
               <Sidebar />
-              <div className="container h-screen bg-primary-foreground py-16">
+              <div className="container h-screen bg-background py-16">
                 {props.children}
               </div>
             </main>
