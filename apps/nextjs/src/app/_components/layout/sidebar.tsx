@@ -33,7 +33,7 @@ export default function Sidebar() {
   const isPathActive = (path: string) => pathname === path;
 
   return (
-    <aside className="bg-primary-background flex h-screen w-64 flex-col gap-3 p-4 text-secondary-foreground">
+    <aside className="bg-primary-background flex h-screen w-64 flex-col gap-3 p-4 text-primary-foreground">
       {sidebarItems.map((item) => (
         <SidebarItem
           key={item.path}
@@ -58,8 +58,8 @@ function SidebarItem({ icon, label, isActive, navigate }: SidebarItemProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 rounded-full p-4 hover:cursor-pointer hover:bg-secondary-foreground hover:text-primary-foreground",
-        isActive && "bg-secondary-foreground text-primary-foreground",
+        "flex items-center gap-4 rounded-full p-4 hover:cursor-pointer hover:bg-primary-foreground hover:text-primary",
+        isActive && "bg-primary-foreground text-primary",
       )}
       onClick={navigate}
     >
